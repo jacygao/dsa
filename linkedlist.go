@@ -28,14 +28,8 @@ func (n *Node) Prev() *Node {
 	return n.prev
 }
 
-// Del removes itself from the linked list
-func (n *Node) Del() {
-	n.prev.next = n.Next()
-	n.next.prev = n.Prev()
-}
-
-// NewLinkedList returns an empty doubly linked list.
-func NewLinkedList() *LinkedList {
+// New returns an empty doubly linked list.
+func New() *LinkedList {
 	return &LinkedList{}
 }
 
@@ -54,4 +48,23 @@ func (l *LinkedList) Append(data interface{}) {
 	last.next = node
 	node.prev = last
 	l.Last = node
+}
+
+// Delete removes a node from the linked list
+func (l *LinkedList) Delete(n *Node) {
+	// Deleting first node
+	if n.Prev() == nil {
+		l.First = n.Next()
+		n.next.prev = nil
+		return
+	}
+	// Deleting last node
+	if n.Next() == nil {
+		l.Last = n.Prev()
+		n.prev.next = nil
+		return
+	}
+
+	n.prev.next = n.Next()
+	n.next.prev = n.Prev()
 }

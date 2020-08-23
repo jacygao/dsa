@@ -6,7 +6,7 @@ import (
 )
 
 func TestAppendOneElement(t *testing.T) {
-	ll := NewLinkedList()
+	ll := New()
 	var data interface{}
 	data = "mock"
 	ll.Append(data)
@@ -21,7 +21,7 @@ func TestAppendOneElement(t *testing.T) {
 }
 
 func TestAppendMultipleElement(t *testing.T) {
-	ll := NewLinkedList()
+	ll := New()
 	strList := []interface{}{
 		"a",
 		"b",
@@ -42,21 +42,33 @@ func TestAppendMultipleElement(t *testing.T) {
 }
 
 func TestDeleteNode(t *testing.T) {
-	ll := NewLinkedList()
+	ll := New()
 	strList := []interface{}{
 		"a",
 		"b",
 		"c",
 		"d",
+		"e",
 	}
 	for _, v := range strList {
 		ll.Append(v)
 	}
 
 	secondNode := ll.First.Next()
-	secondNode.Del()
-
+	ll.Delete(secondNode)
 	if !reflect.DeepEqual(ll.First.Next().Value(), strList[2]) {
-		t.Fatalf("incorrect result! expected %+v but got %+v", ll.First.Next().Value(), strList[2])
+		t.Fatalf("incorrect result! expected %+v but got %+v", strList[2], ll.First.Next().Value())
+	}
+
+	firstNode := ll.First
+	ll.Delete(firstNode)
+	if !reflect.DeepEqual(ll.First.Value(), strList[2]) {
+		t.Fatalf("incorrect result! expected %+v but got %+v", strList[2], ll.First.Value())
+	}
+
+	lastNode := ll.Last
+	ll.Delete(lastNode)
+	if !reflect.DeepEqual(ll.Last.Value(), strList[3]) {
+		t.Fatalf("incorrect result! expected %+v but got %+v", strList[3], ll.Last.Value())
 	}
 }
