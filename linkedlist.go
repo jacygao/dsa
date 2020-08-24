@@ -3,7 +3,6 @@ package linkedlist
 // LinkedList wraps a simple doubly linked list.
 type LinkedList struct {
 	First *Node
-	Last  *Node
 }
 
 // Node defines a node in a linked list
@@ -40,14 +39,22 @@ func (l *LinkedList) Append(data interface{}) {
 
 	if l.First == nil {
 		l.First = node
-		l.Last = node
 		return
 	}
 
-	last := l.Last
+	last := l.First.Next()
+	if last == nil {
+		node.prev = l.First
+		l.First.next = node
+		return
+	}
+
+	for last.Next() != nil {
+		last = last.Next()
+	}
+
 	last.next = node
 	node.prev = last
-	l.Last = node
 }
 
 // Delete removes a node from the linked list
@@ -60,11 +67,24 @@ func (l *LinkedList) Delete(n *Node) {
 	}
 	// Deleting last node
 	if n.Next() == nil {
-		l.Last = n.Prev()
 		n.prev.next = nil
 		return
 	}
 
 	n.prev.next = n.Next()
 	n.next.prev = n.Prev()
+}
+
+// Last returns the last node in a linked list.
+func (l *LinkedList) Last() *Node {
+	last := l.First
+	if last == nil {
+		return nil
+	}
+
+	for last.Next() != nil {
+		last = last.Next()
+	}
+
+	return last
 }

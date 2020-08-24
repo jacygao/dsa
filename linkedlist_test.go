@@ -12,11 +12,11 @@ func TestAppendOneElement(t *testing.T) {
 	ll.Append(data)
 
 	if !reflect.DeepEqual(ll.First.Value(), data) {
-		t.Fatalf("incorrect result! expected %+v but got %+v", ll.First.Value(), data)
+		t.Fatalf("incorrect result! expected %+v but got %+v", data, ll.First.Value())
 	}
 
-	if !reflect.DeepEqual(ll.Last.Value(), data) {
-		t.Fatalf("incorrect result! expected %+v but got %+v", ll.Last.Value(), data)
+	if ll.First.Next() != nil {
+		t.Fatalf("incorrect result! expected %+v but got %+v", nil, ll.First.Next())
 	}
 }
 
@@ -66,9 +66,31 @@ func TestDeleteNode(t *testing.T) {
 		t.Fatalf("incorrect result! expected %+v but got %+v", strList[2], ll.First.Value())
 	}
 
-	lastNode := ll.Last
+	lastNode := ll.Last()
 	ll.Delete(lastNode)
-	if !reflect.DeepEqual(ll.Last.Value(), strList[3]) {
-		t.Fatalf("incorrect result! expected %+v but got %+v", strList[3], ll.Last.Value())
+	if !reflect.DeepEqual(ll.Last().Value(), strList[3]) {
+		t.Fatalf("incorrect result! expected %+v but got %+v", strList[3], ll.Last().Value())
+	}
+}
+
+func TestLastNode(t *testing.T) {
+	ll := New()
+	if ll.Last() != nil {
+		t.Fatal("expected empty linked list has nil last node")
+	}
+
+	strList := []interface{}{
+		"a",
+		"b",
+		"c",
+		"d",
+		"e",
+	}
+	for _, v := range strList {
+		ll.Append(v)
+	}
+
+	if ll.Last().Value().(string) != strList[4] {
+		t.Fatalf("expected %+v but got %+v", ll.Last().Value(), strList[4])
 	}
 }
