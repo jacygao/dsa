@@ -22,18 +22,24 @@ var data = []int{
 var llist *linkedlist.LinkedList
 
 // Solve runs logic to solve the problem.
-// This algorithm walks the linked list to get the length of the linked list.
-// Then we substract the input value to get the distence from the end of the list.
+// This algorithm walks the linked list with 2 pointers.
+// The lead pointer is exactly k node ahead of the tail pointer.
+// When the lead pointer reaches the end of the list, return the value of
+// the tail pointer.
 func Solve(k int) {
-	length := 0
+	counter := 0
+	leadNode := llist.First
+	tailNode := llist.First
 
-	node := llist.First
-	for node != nil {
-		node = node.Next()
-		length++
+	for leadNode != nil {
+		leadNode = leadNode.Next()
+		if counter >= k {
+			tailNode = tailNode.Next()
+		}
+		counter++
 	}
 
-	output := length - input
+	output := tailNode.Value()
 
 	log.Printf("result: %d", output)
 }
