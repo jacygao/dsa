@@ -88,3 +88,32 @@ func (l *LinkedList) Last() *Node {
 
 	return last
 }
+
+// ShiftToEnd shifts a node to the end of a linked list.
+func (l *LinkedList) ShiftToEnd(n *Node) {
+	if n == nil {
+		return
+	}
+
+	next := n.Next()
+	if next == nil {
+		// n is alread the last node so nothing needs to be done
+		return
+	}
+
+	last := l.Last()
+	prev := n.Prev()
+
+	if prev == nil {
+		// n is the first node on the list
+		l.First = next
+		next.prev = nil
+	} else {
+		prev.next = next
+		next.prev = prev
+	}
+
+	last.next = n
+	n.next = nil
+	n.prev = last
+}

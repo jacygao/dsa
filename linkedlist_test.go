@@ -94,3 +94,82 @@ func TestLastNode(t *testing.T) {
 		t.Fatalf("expected %+v but got %+v", ll.Last().Value(), strList[4])
 	}
 }
+
+func TestShiftToEnd(t *testing.T) {
+	testcase := []struct {
+		desc     string
+		nodeth   int
+		expFirst string
+		expLast  string
+	}{
+		{
+			"nil node changes nothing",
+			0,
+			"a",
+			"e",
+		},
+		{
+			"shift to end the first node",
+			1,
+			"b",
+			"a",
+		},
+		{
+			"shift to end the last node",
+			2,
+			"a",
+			"e",
+		},
+		{
+			"shift to end a middle node",
+			3,
+			"a",
+			"b",
+		},
+	}
+
+	for _, tt := range testcase {
+		t.Run(tt.desc, func(t *testing.T) {
+			ll := New()
+			strList := []interface{}{
+				"a",
+				"b",
+				"c",
+				"d",
+				"e",
+			}
+
+			for _, v := range strList {
+				ll.Append(v)
+			}
+
+			var node *Node
+			switch tt.nodeth {
+			case 0:
+				node = nil
+				break
+			case 1:
+				node = ll.First
+				break
+			case 2:
+				node = ll.Last()
+			case 3:
+				node = ll.First.Next()
+			default:
+				t.Fatal("unsupported nodeth value")
+			}
+
+			ll.ShiftToEnd(node)
+
+			firstVal := ll.First.Value().(string)
+			if firstVal != tt.expFirst {
+				t.Fatalf("expected %+v but got %+v", tt.expFirst, firstVal)
+			}
+
+			lastVal := ll.Last().Value()
+			if lastVal != tt.expLast {
+				t.Fatalf("expected %+v but got %+v", tt.expLast, lastVal)
+			}
+		})
+	}
+}
