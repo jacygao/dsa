@@ -17,6 +17,13 @@ ll := linkedlist.New()
 ll.Append("your value")
 ```
 
+### Prepend value to the start of a linked list
+
+```go
+// Append accepts any interface.
+ll.Prepend("your value")
+```
+
 ### Delete a node from a linked list
 
 ```go
