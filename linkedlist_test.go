@@ -7,8 +7,7 @@ import (
 
 func TestAppendOneElement(t *testing.T) {
 	ll := New()
-	var data interface{}
-	data = "mock"
+	data := "mock"
 	ll.Append(data)
 
 	if !reflect.DeepEqual(ll.First.Value(), data) {
@@ -20,7 +19,7 @@ func TestAppendOneElement(t *testing.T) {
 	}
 }
 
-func TestAppendMultipleElement(t *testing.T) {
+func TestAppendMultipleElements(t *testing.T) {
 	ll := New()
 	strList := []interface{}{
 		"a",
@@ -36,6 +35,41 @@ func TestAppendMultipleElement(t *testing.T) {
 	for _, v := range strList {
 		if !reflect.DeepEqual(cur.Value(), v) {
 			t.Fatalf("incorrect result! expected %+v but got %+v", cur.Value(), v)
+		}
+		cur = cur.Next()
+	}
+}
+
+func TestPrependOneElement(t *testing.T) {
+	ll := New()
+	data := "mock"
+	ll.Prepend(data)
+
+	if !reflect.DeepEqual(ll.First.Value(), data) {
+		t.Fatalf("incorrect result! expected %+v but got %+v", data, ll.First.Value())
+	}
+
+	if ll.First.Next() != nil {
+		t.Fatalf("incorrect result! expected %+v but got %+v", nil, ll.First.Next())
+	}
+}
+
+func TestPrependMultipleElements(t *testing.T) {
+	ll := New()
+	strList := []interface{}{
+		"a",
+		"b",
+		"c",
+		"d",
+	}
+	for _, v := range strList {
+		ll.Prepend(v)
+	}
+
+	cur := ll.First
+	for i := len(strList) - 1; i >= 0; i-- {
+		if !reflect.DeepEqual(cur.Value(), strList[i]) {
+			t.Fatalf("incorrect result! expected %+v but got %+v", cur.Value(), strList[i])
 		}
 		cur = cur.Next()
 	}

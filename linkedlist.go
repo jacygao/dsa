@@ -57,6 +57,21 @@ func (l *LinkedList) Append(data interface{}) {
 	node.prev = last
 }
 
+// Prepend appends a new node to the start of the linked list.
+func (l *LinkedList) Prepend(data interface{}) {
+	node := &Node{}
+	node.val = data
+
+	if l.First == nil {
+		l.First = node
+		return
+	}
+
+	node.next = l.First
+	l.First.prev = node
+	l.First = node
+}
+
 // Delete removes a node from the linked list
 func (l *LinkedList) Delete(n *Node) {
 	// Deleting first node
