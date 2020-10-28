@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/jacygao/linkedlist"
+	"github.com/jacygao/dsa/linkedlist"
 )
 
 var input int

@@ -9,10 +9,10 @@ dsa contains Go implementation of common Data Structure and Algorithms.
 
 ### Linkedlist
 
-- Partition
-- Remove dups
-- Return kth to last
-- Sum lists
+- [Partition](problems/partition/README.md)
+- [Remove dups](problems/remove_dups/README.md)
+- [Return kth to last](problems/return_kth_to_last/README.md)
+- [Sum lists](problems/sum_lists/README.md)
 
 ### Tree
 

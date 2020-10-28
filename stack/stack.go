@@ -3,7 +3,7 @@ package stack
 import (
 	"sync"
 
-	"github.com/jacygao/linkedlist/linkedlist"
+	"github.com/jacygao/dsa/linkedlist"
 )
 
 // Stack implements a thread safe stack backed by a linked list.

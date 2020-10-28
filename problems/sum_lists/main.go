@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/jacygao/linkedlist"
+	"github.com/jacygao/dsa/linkedlist"
 )
 
 // Problem statement

@@ -1,3 +1,3 @@
-module github.com/jacygao/linkedlist
+module github.com/jacygao/dsa
 
 go 1.14
