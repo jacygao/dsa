@@ -20,7 +20,7 @@ ll.Append("your value")
 ### Prepend value to the start of a linked list
 
 ```go
-// Append accepts any interface.
+// Prepend accepts any interface.
 ll.Prepend("your value")
 ```
 

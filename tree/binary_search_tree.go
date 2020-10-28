@@ -31,14 +31,18 @@ func (t *BinarySearchTree) add(root *Node, val int) *Node {
 	return root
 }
 
+// TravelInOrder visits each node of a tree in the following order:
+// left branch -> current node -> right branch
 func (t *BinarySearchTree) TravelInOrder(visit func(node *Node)) {
 	t.travelInOrder(t.root, visit)
 }
 
+// TravelPreOrder visits the current node before its child nodes.
 func (t *BinarySearchTree) TravelPreOrder(visit func(node *Node)) {
 	t.travelPreOrder(t.root, visit)
 }
 
+// TravelPostOrder visits the current node after its child nodes.
 func (t *BinarySearchTree) TravelPostOrder(visit func(node *Node)) {
 	t.travelPostOrder(t.root, visit)
 }
@@ -85,6 +89,7 @@ func insertVal(tree *BinarySearchTree, start, end int, vals []int) {
 	}
 }
 
+// MaxDepth returns the max depth of a Binary Search Tree.
 func (t *BinarySearchTree) MaxDepth() int {
 	return t.walk(t.root)
 }
@@ -101,15 +106,3 @@ func (t *BinarySearchTree) walk(node *Node) int {
 	}
 	return 0
 }
-
-type LNode struct {
-	prev LNode
-	next LNode
-	val  int
-}
-
-func NewTreeToLinkedLists() {
-
-}
-
-fucn walkTree()
