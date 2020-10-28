@@ -11,32 +11,34 @@ type Queue struct {
 	l *linkedlist.LinkedList
 }
 
-func New(*Queue) {
-	q: linkedlist.New(),
+func New() *Queue {
+	return &Queue{
+		l: linkedlist.New(),
+	}
 }
 
-func (q *Queue) add(val interface{}){
+func (q *Queue) Add(val interface{}) {
 	q.Lock()
 	defer q.Unlock()
 	q.l.Append(val)
 }
 
-func (q *Queue) remove() interface{} {
+func (q *Queue) Remove() interface{} {
 	q.Lock()
 	defer q.Unlock()
 	node := q.l.First
 	copy := *node
 	q.l.Delete(node)
-	return copy
+	return copy.Value()
 }
 
-func (q *Queue) peek() interface{} {
+func (q *Queue) Peek() interface{} {
 	q.Lock()
 	defer q.Unlock()
 	return q.l.First
 }
 
-func (q *Queue) isEmpty() bool {
+func (q *Queue) IsEmpty() bool {
 	q.Lock()
 	defer q.Unlock()
 	return q.l.First == nil

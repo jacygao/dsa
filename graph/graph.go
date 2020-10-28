@@ -32,7 +32,7 @@ func dfs(node *Node, visit func(n *Node)) {
 func BFS(node *Node, visit func(n *Node)) {
 	visit(node)
 	node.visited = true
-	bfsWithQueue(node, visit)
+	bfs(node, visit)
 }
 
 func bfs(node *Node, visit func(n *Node)) {
@@ -49,12 +49,12 @@ func bfs(node *Node, visit func(n *Node)) {
 	}
 }
 
-func bfsWithQueue(node *Node, visit func(n *Node)) {
+func BFSWithQueue(node *Node, visit func(n *Node)) {
 	q := queue.New()
 	node.visited = true
 	q.Add(node)
 	for !q.IsEmpty() {
-		visit(q.Remove())
+		visit(q.Remove().(*Node))
 		for _, n := range node.children {
 			if !n.visited {
 				n.visited = true

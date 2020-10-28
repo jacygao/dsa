@@ -51,11 +51,12 @@ func TestBFS(t *testing.T) {
 		for index == 0 || root == nodes[index-1] {
 			index = rand.Intn(nodesTotal)
 		}
+		fmt.Printf("%d ", nodes[index-1].val)
 		root = root.AppendChild(nodes[index-1])
 	}
-
+	fmt.Printf("\n result \n")
 	visit := func(n *Node) {
-		fmt.Println(n.val)
+		fmt.Printf("%d ", n.val)
 	}
 	BFS(nodes[0], visit)
 }

@@ -77,7 +77,9 @@ func (l *LinkedList) Delete(n *Node) {
 	// Deleting first node
 	if n.Prev() == nil {
 		l.First = n.Next()
-		n.next.prev = nil
+		if n.next != nil {
+			n.next.prev = nil
+		}
 		return
 	}
 	// Deleting last node

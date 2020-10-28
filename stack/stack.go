@@ -22,7 +22,7 @@ func New() *Stack {
 // Push adds a value to the top of the stack.
 func (s *Stack) Push(data interface{}) {
 	s.Lock()
-	s.list.Prepend()
+	s.list.Prepend(data)
 	s.Unlock()
 }
 
@@ -33,7 +33,7 @@ func (s *Stack) Pop() interface{} {
 	node := s.list.First
 	copy := *node
 	s.list.Delete(node)
-	return copy
+	return copy.Value()
 }
 
 // Peek returns the top value of the stack.

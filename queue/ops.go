@@ -1,8 +1,8 @@
 package queue
 
 type Operations interface {
-	add(interface{})
-	remove() interface{}
-	peek() interface{}
-	isEmpty() bool
+	Add(interface{})
+	Remove() interface{}
+	Peek() interface{}
+	IsEmpty() bool
 }
