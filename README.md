@@ -20,4 +20,4 @@ dsa contains Go implementation of common Data Structure and Algorithms.
 ### Tree
 
 - Minimal tree
-- List of depths
+- [List of depths](problem/tree/lists_of_depth/README.md)
