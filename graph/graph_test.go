@@ -60,3 +60,37 @@ func TestBFS(t *testing.T) {
 	}
 	BFS(nodes[0], visit)
 }
+
+func TestCycleExists(t *testing.T) {
+	n := 4
+	e := 6
+	edges := [][]int{
+		[]int{0, 1},
+		[]int{0, 2},
+		[]int{1, 2},
+		[]int{2, 0},
+		[]int{2, 3},
+		[]int{3, 3},
+	}
+
+	expected := true
+	if res := cycleExists(n, e, edges); res != expected {
+		t.Fatalf("results do not match! expected %v but got %v", expected, res)
+	}
+}
+
+func TestCycleNotExists(t *testing.T) {
+	n := 4
+	e := 3
+	edges := [][]int{
+		[]int{0, 1},
+		[]int{0, 2},
+		[]int{1, 2},
+		[]int{2, 3},
+	}
+
+	expected := false
+	if res := cycleExists(n, e, edges); res != expected {
+		t.Fatalf("results do not match! expected %v but got %v", expected, res)
+	}
+}
