@@ -21,3 +21,9 @@ dsa contains Go implementation of common Data Structure and Algorithms.
 
 - Minimal tree
 - [List of depths](problems/tree/lists_of_depth/README.md)
+
+### Graph
+
+- Find Bridges (Tarjan's Algorithm)
+- Topological Sort
+- Cycle Detection (Color Algorithm)
