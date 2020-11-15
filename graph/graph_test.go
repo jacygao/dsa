@@ -3,6 +3,7 @@ package graph
 import (
 	"fmt"
 	"math/rand"
+	"reflect"
 	"testing"
 )
 
@@ -65,12 +66,12 @@ func TestCycleExists(t *testing.T) {
 	n := 4
 	e := 6
 	edges := [][]int{
-		[]int{0, 1},
-		[]int{0, 2},
-		[]int{1, 2},
-		[]int{2, 0},
-		[]int{2, 3},
-		[]int{3, 3},
+		{0, 1},
+		{0, 2},
+		{1, 2},
+		{2, 0},
+		{2, 3},
+		{3, 3},
 	}
 
 	expected := true
@@ -83,14 +84,35 @@ func TestCycleNotExists(t *testing.T) {
 	n := 4
 	e := 3
 	edges := [][]int{
-		[]int{0, 1},
-		[]int{0, 2},
-		[]int{1, 2},
-		[]int{2, 3},
+		{0, 1},
+		{0, 2},
+		{1, 2},
+		{2, 3},
 	}
 
 	expected := false
 	if res := cycleExists(n, e, edges); res != expected {
 		t.Fatalf("results do not match! expected %v but got %v", expected, res)
+	}
+}
+
+func TestFindBridges(t *testing.T) {
+	n := 6
+	edges := [][]int{
+		{0, 1},
+		{1, 2},
+		{2, 3},
+		{3, 4},
+		{3, 5},
+		{1, 5},
+	}
+
+	expected := [][]int{
+		{3, 4},
+	}
+	ans := findBridges(n, edges)
+
+	if !reflect.DeepEqual(ans, expected) {
+		t.Fatalf("results do not match! expected %+v but got %+v", expected, ans)
 	}
 }
