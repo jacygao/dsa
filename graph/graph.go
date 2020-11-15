@@ -1,8 +1,6 @@
 package graph
 
 import (
-	"log"
-
 	"github.com/jacygao/dsa/queue"
 )
 
@@ -158,7 +156,6 @@ func genUndirectedAdj(n int, edges [][]int) [][]int {
 }
 
 func dfsFindBridges(g [][]int, n int, disc, low, visited, parent []int) {
-	log.Printf("cur n: %d", n)
 	time += 1
 	disc[n] = time
 	low[n] = time
@@ -170,12 +167,9 @@ func dfsFindBridges(g [][]int, n int, disc, low, visited, parent []int) {
 
 			// compare low value and update parent low to lower value
 			low[n] = min(low[n], low[v])
-
-			log.Printf("v: %d, val: %d, disc: %d, n: %d, val: %d, disc %d \n", v, low[v], disc[v], n, low[n], disc[n])
 			// compare low value to disc value
 			if low[v] > disc[n] {
 				// bridge found
-				log.Println("found")
 				ans = append(ans, []int{n, v})
 			}
 		} else if v != parent[n] {
@@ -191,3 +185,7 @@ func min(a, b int) int {
 	}
 	return a
 }
+
+// func topologicalSort(n int, edges [][]int) []int {
+
+// }
