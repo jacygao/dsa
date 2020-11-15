@@ -1,6 +1,8 @@
 package graph
 
 import (
+	"log"
+
 	"github.com/jacygao/dsa/queue"
 )
 
@@ -112,6 +114,11 @@ func check(g [][]int, colors []int, node int) bool {
 	return false
 }
 
+var (
+	time int = 0
+	ans  [][]int
+)
+
 func findBridges(n int, edges [][]int) [][]int {
 	// disc tracks the time when a node is visited
 	disc := make([]int, n)
@@ -125,13 +132,13 @@ func findBridges(n int, edges [][]int) [][]int {
 		parent[i] = -1
 	}
 	// answer slice
-	ans := [][]int{}
+	ans = [][]int{}
 	// converts edges to adjacency list
 	adj := genUndirectedAdj(n, edges)
 
 	for i := 0; i < n; i++ {
 		if visited[i] == 0 {
-			dfsFindBridges(adj, i, disc, low, visited, parent, ans)
+			dfsFindBridges(adj, i, disc, low, visited, parent)
 		}
 	}
 
@@ -150,20 +157,25 @@ func genUndirectedAdj(n int, edges [][]int) [][]int {
 	return g
 }
 
-func dfsFindBridges(g [][]int, n int, disc, low, visited, parent []int, ans [][]int) {
-	disc[n]++
-	low[n]++
+func dfsFindBridges(g [][]int, n int, disc, low, visited, parent []int) {
+	log.Printf("cur n: %d", n)
+	time += 1
+	disc[n] = time
+	low[n] = time
 	visited[n] = 1
 	for _, v := range g[n] {
 		if visited[v] == 0 {
 			parent[v] = n
-			dfsFindBridges(g, v, disc, low, visited, parent, ans)
+			dfsFindBridges(g, v, disc, low, visited, parent)
 
 			// compare low value and update parent low to lower value
 			low[n] = min(low[n], low[v])
+
+			log.Printf("v: %d, val: %d, disc: %d, n: %d, val: %d, disc %d \n", v, low[v], disc[v], n, low[n], disc[n])
 			// compare low value to disc value
 			if low[v] > disc[n] {
 				// bridge found
+				log.Println("found")
 				ans = append(ans, []int{n, v})
 			}
 		} else if v != parent[n] {
