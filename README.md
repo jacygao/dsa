@@ -24,6 +24,6 @@ dsa contains Go implementation of common Data Structure and Algorithms.
 
 ### Graph
 
-- Find Bridges (Tarjan's Algorithm)
-- Topological Sort
-- Cycle Detection (Color Algorithm)
+- [Find Bridges (Tarjan's Algorithm)](graph/find_bridges.go)
+- [Topological Sort](graph/topological_sort.go)
+- [Cycle Detection (Color Method)](graph/cycle_exists.go)
