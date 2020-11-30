@@ -36,20 +36,6 @@ func BFS(node *Node, visit func(n *Node)) {
 }
 
 func bfs(node *Node, visit func(n *Node)) {
-	toVisit := []*Node{}
-	for _, n := range node.children {
-		if !n.visited {
-			visit(n)
-			n.visited = true
-			toVisit = append(toVisit, n)
-		}
-	}
-	for _, n := range toVisit {
-		bfs(n, visit)
-	}
-}
-
-func BFSWithQueue(node *Node, visit func(n *Node)) {
 	q := queue.New()
 	node.visited = true
 	q.Add(node)
