@@ -7,6 +7,7 @@ dsa contains Go implementation of common Data Structure and Algorithms.
 - graph
 - queue
 - stack
+- sorting
 
 ## Problems and Challenges
 
@@ -27,3 +28,7 @@ dsa contains Go implementation of common Data Structure and Algorithms.
 - [Find Bridges (Tarjan's Algorithm)](graph/find_bridges.go)
 - [Topological Sort](graph/topological_sort.go)
 - [Cycle Detection (Color Method)](graph/cycle_exists.go)
+
+### Sorting
+
+- Merge Sort
