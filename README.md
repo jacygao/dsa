@@ -11,6 +11,10 @@ dsa contains Go implementation of common Data Structure and Algorithms.
 
 ## Problems and Challenges
 
+### String and Integer
+
+- [Reverse Integer](problems/strint/README.md)
+
 ### Linkedlist
 
 - [Partition](problems/linkedlist/partition/README.md)
