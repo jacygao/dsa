@@ -6,7 +6,7 @@ import (
 
 func TestReverseInt(t *testing.T) {
 	testcases := []struct {
-		in int
+		in  int
 		out int
 	}{
 		{
@@ -18,21 +18,25 @@ func TestReverseInt(t *testing.T) {
 			0,
 		},
 		{
-			10,
-			0,
+			-7,
+			-7,
+		},
+		{
+			210,
+			12,
 		},
 		{
 			-123,
-			0,
+			-321,
 		},
 		{
-			2356712351,
-			1532176532,
+			1356712359,
+			0,
 		},
 	}
 
 	for _, test := range testcases {
-		out := ReverseInt(test.in) 
+		out := ReverseInt(test.in)
 		if out != test.out {
 			t.Fatalf("expected %d, but got %d", test.out, out)
 		}
