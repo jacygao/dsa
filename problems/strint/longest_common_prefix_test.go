@@ -30,7 +30,7 @@ func TestLongestCommonPrefix(t *testing.T) {
 	}
 
 	for _, test := range testcases {
-		out := longestCommonPrefix(test.in)
+		out := LongestCommonPrefix(test.in)
 		if out != test.out {
 			t.Fatalf("expected %s, but got %s", test.out, out)
 		}

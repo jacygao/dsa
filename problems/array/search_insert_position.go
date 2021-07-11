@@ -2,8 +2,34 @@ package array
 
 import "sort"
 
-// SearchInsertPosition using Binary Search
-func SearchInsertPosition(nums []int, target int) int {
+/* SearchInsertPositionBinarySearch solves the following problem.
+
+Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+You must write an algorithm with O(log n) runtime complexity.
+
+Example 1:
+
+Input: nums = [1,3,5,6], target = 5
+Output: 2
+Example 2:
+
+Input: nums = [1,3,5,6], target = 2
+Output: 1
+Example 3:
+
+Input: nums = [1,3,5,6], target = 7
+Output: 4
+Example 4:
+
+Input: nums = [1,3,5,6], target = 0
+Output: 0
+Example 5:
+
+Input: nums = [1], target = 0
+Output: 0
+*/
+func SearchInsertPositionBinarySearch(nums []int, target int) int {
 	if len(nums) < 1 {
 		return 0
 	}
@@ -20,10 +46,10 @@ func SearchInsertPosition(nums []int, target int) int {
 	}
 	if half > target {
 		// left
-		return SearchInsertPosition(nums[:mid], target)
+		return SearchInsertPositionBinarySearch(nums[:mid], target)
 	}
 	// right
-	return SearchInsertPosition(nums[mid+1:], target) + mid + 1
+	return SearchInsertPositionBinarySearch(nums[mid+1:], target) + mid + 1
 }
 
 // SearchInsertPositionSort uses sort package.

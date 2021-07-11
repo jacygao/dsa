@@ -2,7 +2,7 @@ package array
 
 import "testing"
 
-func TestSearchInsertPosition(t *testing.T) {
+func TestSearchInsertPositionBinarySearch(t *testing.T) {
 	testcases := []struct {
 		in     []int
 		target int
@@ -51,7 +51,7 @@ func TestSearchInsertPosition(t *testing.T) {
 	}
 
 	for _, test := range testcases {
-		out := SearchInsertPosition(test.in, test.target)
+		out := SearchInsertPositionBinarySearch(test.in, test.target)
 		if out != test.out {
 			t.Fatalf("expected %d, but got %d", test.out, out)
 		}
@@ -60,7 +60,7 @@ func TestSearchInsertPosition(t *testing.T) {
 
 func BenchmarkBinarySearch(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = SearchInsertPosition([]int{-3, -1, 1, 3, 5, 6}, -2)
+		_ = SearchInsertPositionBinarySearch([]int{-3, -1, 1, 3, 5, 6}, -2)
 	}
 }
 
