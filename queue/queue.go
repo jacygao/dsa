@@ -35,7 +35,7 @@ func (q *Queue) Remove() interface{} {
 func (q *Queue) Peek() interface{} {
 	q.Lock()
 	defer q.Unlock()
-	return q.l.First
+	return q.l.First.Value()
 }
 
 func (q *Queue) IsEmpty() bool {
