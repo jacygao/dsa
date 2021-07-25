@@ -5,7 +5,7 @@ dsa contains Go implementation of common Data Structure and Algorithms.
 - [linkedlist](linkedlist/README.md)
 - tree
 - graph
-- queue
+- [queue](queue/README.md)
 - stack
 - sorting
 
