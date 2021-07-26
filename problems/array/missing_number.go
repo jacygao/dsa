@@ -1,5 +1,7 @@
 package array
 
+import "sort"
+
 /* MissingNumberOptimal solves LeetCode 268. (https://leetcode.com/problems/missing-number/)
 Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
 
@@ -42,4 +44,15 @@ func MissingNumberOptimal(nums []int) int {
 		expect += i
 	}
 	return expect + l - actual
+}
+
+func MissingNumberSort(nums []int) int {
+	sort.Ints(nums)
+	l := len(nums)
+	for i := 0; i < l; i++ {
+		if nums[i] != i {
+			return i
+		}
+	}
+	return l
 }
