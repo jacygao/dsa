@@ -6,14 +6,23 @@ dsa contains Go implementation of common Data Structure and Algorithms.
 - tree
 - graph
 - [queue](queue/README.md)
-- stack
+- [stack]((stack/README.md))
 - sorting
 
 ## Problems and Challenges
 
+Go solutions for problems from various online resources. Every problem comes with table driven tests and benchmarks for multiple solutions.
+
 ### String and Integer
 
-- [Reverse Integer](problems/strint/README.md)
+- [Reverse Integer](problems/strint/reverse_int.go)
+- [Is Happy Number](problems/strint/is_happy_number.go)
+- [Longest Common Prefix](problems/strint/longest_common_prefix.go)
+
+### Array
+
+- [Container With Most Water](problems/array/container_with_most_water.go)
+- [Find Shortest Sub Array](problems/array/find_shortest_sub_array.go)
 
 ### Linkedlist
 
