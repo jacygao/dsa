@@ -40,7 +40,7 @@ func (s *Stack) Pop() interface{} {
 func (s *Stack) Peek() interface{} {
 	s.Lock()
 	defer s.Unlock()
-	return s.list.First
+	return s.list.First.Value()
 }
 
 // IsEmpty returns true if the stack is empty.
