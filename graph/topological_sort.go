@@ -2,7 +2,8 @@ package graph
 
 import "container/list"
 
-func TopologicalSort(n int, edges [][]int) []int {
+// TopologicalSortDFS implements the Topological Sorting algorithm using the DFS approach.
+func TopologicalSortDFS(n int, edges [][]int) []int {
 	ans := []int{}
 	g := genDirectedAdj(n, edges)
 	stack := list.New()
@@ -31,6 +32,39 @@ func dfsTopologicalSort(g [][]int, n int, s *list.List, visited []int) {
 	}
 	s.PushBack(n)
 }
+
+// TopologicalSortKahn implements the Topological Sorting algorithm using Kahn's algorithm.
+func TopologicalSortKahn(n int, edges [][]int) []int {
+	graph := genDirectedAdj(n, edges)
+	queue := []int{}
+	degrees := make([]int, n)
+	res := []int{}
+
+	for _, edge := range edges {
+		degrees[edge[1]]++ 
+	}
+
+	for node, degree := range degrees {
+		if degree == 0 {
+			queue = append(queue, node)
+		}
+	}
+
+	for len(queue) > 0 {
+		peek := queue[0]
+		queue = queue[1:]
+		res = append(res, peek)
+		for _, node := range graph[peek] {
+			degrees[node]--
+			if degrees[node] == 0 {
+				queue = append(queue, node)
+			}
+		}
+	}
+
+	return res
+}
+
 
 func genDirectedAdj(n int, edges [][]int) [][]int {
 	g := make([][]int, n)
