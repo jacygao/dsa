@@ -18,6 +18,8 @@ Using a 2 steps approach to solve these problems using Disjoint set:
 
 - Union: merge if 2 nodes are disjointed
 
+- Rank: Compression using rank will improve time complexity from O(n) to O(log(n))
+
 ## Graph
 
 Detect cycle in an **undirected** graph is the most popular problem solve by Disjoint Set.
@@ -26,7 +28,8 @@ Detect cycle in an **undirected** graph is the most popular problem solve by Dis
 
 Find consecutive elements in an unsorted list
 
-Input: [100,4,200,1,3,2]
+Input: `[100,4,200,1,3,2]`
+
 Output: max length of consecutive elements (4 in this case as in [1,2,3,4])
 
 Solution:
@@ -46,7 +49,7 @@ With this technique in mind, we can create a hashmap to look up every element:
             if _, ok := set[val-1]; ok {
                 continue
             }
-            
+
             cur := 0
             for _, ok := set[val]; ok {
                 cur++
