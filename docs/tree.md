@@ -2,6 +2,14 @@
 
 ## Depth First Search (DFS)
 
+### Use Cases
+
+- Return kth smallest node in BST
+
+### Techniques
+
+- Inorder DFS of a BST results in an ascending order
+
 ## Breath First Search (BFS)
 
 ### Use Cases
@@ -57,3 +65,28 @@ Therefore
 #### Time Complexity
 
 `O(h)` where h is the height of the tree
+
+## Counting nodes
+
+Counting how many nodes in a binary tree can be simplified to counting both left and right sub tree plus the root node itself.
+
+For example:
+
+```
+    func countNodes(root *TreeNode) int {
+        if root == nil {
+            return 0
+        }
+        return countNodes(root.Left) + countNodes(root.Right) + 1
+    }
+```
+
+### Time Complexity 
+
+`O(n)`
+
+### Optimisation
+
+- Total nodes of a perfect tree is `2^h-1` where `h` is the height of the tree
+- Based on the above technique, total node of a complete tree is total nodes of h-1 plus total nodes of the leaf nodes on `h`
+- Using this technique can optimise time complexity to under `O(n)`
